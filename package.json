@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/mozilla/node-vtt",
   "scripts": {
+    "test": "./node_modules/.bin/grunt",
     "postinstall": "bower install"
   }
 }
