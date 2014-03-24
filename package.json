@@ -13,6 +13,12 @@
     "async": "0.2.9",
     "node-phantom": "0.2.5"
   },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-bump": "0.0.13"
+  },
   "keywords": [
     "vtt",
     "webvtt",
