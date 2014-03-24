@@ -1,0 +1,40 @@
+{
+  "author": "Rick Eyre <rick.eyre@outlook.com>",
+  "name": "node-vtt",
+  "version": "0.0.0",
+  "description": "A node wrapper for vtt.js",
+  "main": "lib/node-vtt.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mozilla/node-vtt.git"
+  },
+  "dependencies": {
+    "vtt.js": ">=0.10.1",
+    "async": "0.2.9",
+    "node-phantom": "0.2.5"
+  },
+  "keywords": [
+    "vtt",
+    "webvtt",
+    "track",
+    "captions",
+    "subtitles",
+    "text track"
+  ],
+  "files": [
+    "lib/basic.html",
+    "lib/node-vtt.js",
+    "bower.json"
+  ],
+  "license": {
+    "type": "Apache-2.0",
+    "url": "https://github.com/mozilla/vtt.js/blob/master/LICENSE"
+  },
+  "bugs": {
+    "url": "https://github.com/mozilla/node-vtt/issues"
+  },
+  "homepage": "https://github.com/mozilla/node-vtt",
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}
