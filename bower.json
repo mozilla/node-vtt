@@ -1,0 +1,6 @@
+{
+  "name": "vtt.js",
+  "dependencies": {
+    "vtt.js": ">=0.10.4"
+  }
+}

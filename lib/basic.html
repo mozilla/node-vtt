@@ -1,0 +1,74 @@
+/**
+ * Copyright 2013 vtt.js and node-vtt Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../bower_components/vtt.js/vtt.js"></script>
+    <script src="../node_modules/vtt.js/lib/vttcue-extended.js"></script>
+    <script src="../node_modules/vtt.js/lib/vttregion-extended.js"></script>
+    <script type="text/javascript">
+      function setup() {
+        window.p = new WebVTT.Parser(window);
+        p.oncue = function(cue) {
+          window.callPhantom({ cue: cue });
+        }
+        p.onregion = function(region) {
+          window.callPhantom({ region: region });
+        }
+        p.onparsingerror = function(e) {
+          window.callPhantom({ error: e });
+        }
+      }
+      window.onload = setup;
+
+      // The properties on DOM objects that we care about testing.
+      window.vttProps = ( "localName tagName className textContent" +
+                          " lang target data title" ).split(" ");
+
+      // Grab only the properties that we care about off an HTMLElement.
+      window.filterElement = function(element) {
+        var result = {};
+
+        vttProps.forEach(function(prop) {
+          if (element.hasOwnProperty(prop)) {
+            result[prop] = element[prop];
+          }
+        });
+
+        if (element.hasOwnProperty("style")) {
+          result.style = {};
+          for (var i = 0, l = element.style.length; i < l; i++) {
+            var prop = element.style[i];
+            result.style[prop] = element.style[prop];
+          }
+        }
+
+        if (element.hasOwnProperty("childNodes")) {
+          result.childNodes = [];
+          for (var x = 0, y = element.childNodes.length; x < y; x++) {
+            result.childNodes.push(filterElement(element.childNodes[x]));
+          }
+        }
+
+        return result;
+      }
+    </script>
+  </head>
+  <body>
+      <div id="overlay" style="position: relative; width: 300px; height: 150px"></div>
+  </body>
+</html>
