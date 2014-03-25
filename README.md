@@ -1,6 +1,8 @@
 node-vtt
 ========
 
+[![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt)
+
 A node wrapper for [vtt.js](https://github.com/mozilla/vtt.js). It runs `vtt.js`
 on PhantomJS from Node.
 
