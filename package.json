@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/mozilla/node-vtt",
   "scripts": {
-    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha --reporter spec tests",
+    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha --reporter spec --timeout 40000 tests",
     "postinstall": "./node_modules/.bin/bower install"
   }
 }
