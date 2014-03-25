@@ -6,6 +6,7 @@ on PhantomJS from Node.
 
 ###Table of Contents###
 
+- [Install](#install)
 - [API](#api)
   - [ready](#ready)
   - [cues](#cues)
@@ -22,6 +23,17 @@ on PhantomJS from Node.
   - [clear(onClear)](#clearonclear)
   - [error](#error)
 - [License](#license)
+
+Install
+=======
+
+`node-vtt` is on npm. Just do:
+
+```
+npm install node-vtt
+```
+
+Or include it in your `package.json` dependencies.
 
 API
 ===
