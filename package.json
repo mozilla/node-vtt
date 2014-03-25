@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "vtt.js": ">=0.10.1",
-    "async": "0.2.9",
     "node-phantom": "0.2.5",
     "mocha": "<=1.18.2"
   },
