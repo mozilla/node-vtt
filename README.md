@@ -4,12 +4,13 @@ node-vtt
 [![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt)
 
 A node wrapper for [vtt.js](https://github.com/mozilla/vtt.js). It runs `vtt.js`
-on PhantomJS from Node.
+on [PhantomJS](http://phantomjs.org/) from Node.
 
 ###Table of Contents###
 
 - [Install](#install)
 - [API](#api)
+  - [NodeVTT's Web Page](#nodevtts-web-page)
   - [ready](#ready)
   - [cues](#cues)
   - [regions](#regions)
@@ -63,6 +64,8 @@ nodeVTT.init(function() {
 });
 ```
 
+####NodeVTT's Web Page####
+
 `node-vtt` uses [PhantomJS](http://phantomjs.org/) to run `vtt.js` on a web
 page. Therefore, you need to have a simple HTML file for `node-vtt` to load. There
 is a default one provided for you, so read no further if you're not interested in
@@ -72,18 +75,21 @@ If you provide your own page the page must have a few things.
 
 * It must have the `WebVTT`, `VTTCue`, and `VTTRegion` shims provided by
 [vtt.js](https://github.com/mozilla/vtt.js). Doing this is most easily accomplished
-by including the `vtt.js` bower distributable and including it as a script on the
+by using the `vtt.js` bower distributable and including it as a script on the
 page.
 
 * The page must also have the `vttcue-extended` and `vttregion-extended` versions
 of the `VTTCue` and `VTTRegion` shims on the page.
 
-* If you'd like to run the processing model it must have a `div` element on it
-with an `id` property of `overlay` and a positioning of `relative`. It uses
+* If you'd like to run the processing model the page must have a `div` element on it
+with an `id` property of `overlay` and a positioning of `relative`. `node-vtt` uses
 this div as the container to display subtitles.
 
 See the [default page](https://github.com/mozilla/node-vtt/blob/master/lib/basic.html)
 provided for you for more information.
+
+Once you've created your own customized page check out how you can load it with the
+[init](#inituri-oninit) function.
 
 ####ready####
 
@@ -139,8 +145,8 @@ must have the WebVTT shim from `vtt.js` included on the page as well as the
 shims for VTTCue (extended) and VTTRegion (extended). If you don't want to 
 pass a `uri` a default page will be provided for you.
 
-Check the [default page](https://github.com/mozilla/node-vtt/blob/master/lib/basic.html)
-for more information on how to customize your own.
+If you'd like to make a custom page for `node-vtt` to work with then check out
+more information on that [here](#nodevtts-web-page).
 
 ```js
 nodeVTT.init(function() {
@@ -287,9 +293,14 @@ nodeVTT.clear(function() {
   // Ready to do some more parsing.
 });
 ```
+
+**Note:** Calling `clear` is only necessary if you want to parse a new set of
+WebVTT data. You do not need to call it if you're just calling the processing
+functions.
+
 ####error####
 
-The error object returned by `node-vtt` are simple JS objects with a `message` property
+The error objects returned by `node-vtt` are simple JS objects with a `message` property
 on them describing the error.
 
 ```js
