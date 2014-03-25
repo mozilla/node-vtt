@@ -11,7 +11,8 @@
   "dependencies": {
     "vtt.js": ">=0.10.1",
     "async": "0.2.9",
-    "node-phantom": "0.2.5"
+    "node-phantom": "0.2.5",
+    "mocha": "<=1.18.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -42,7 +43,7 @@
   },
   "homepage": "https://github.com/mozilla/node-vtt",
   "scripts": {
-    "test": "./node_modules/.bin/grunt",
+    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha --reporter spec tests",
     "postinstall": "./node_modules/.bin/bower install"
   }
 }
