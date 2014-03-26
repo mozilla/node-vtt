@@ -202,8 +202,8 @@ nodeVTT.parseFile("vtt-file", function(error) {
 Flushes the parser. This indicates that no more data will be coming to the parser
 and so it should parse any unparsed data it may have. This is necessary when parsing
 stream data. See [flush](https://github.com/mozilla/vtt.js#flush) on `vtt.js` for
-more information. `onFlush` will return an error if something went wrong, otherwise,
-it will return nothing.
+more information. `onFlush` will return an [error](#error) if something went
+wrong, otherwise, it will return nothing.
 
 ```js
 nodeVTT.parse(data, function(){
@@ -283,13 +283,17 @@ nodeVTT.processFile("vtt-file", function(error, divs) {
 
 Clears the state of `node-vtt`. This will create a fresh parser and empty the
 [vtt](#vtt), [cues](#cues), [regions](#regions), and [errors](#errors) arrays.
+`onClear` will be called with an [error](#error) if something went wrong.
 
 This enables you to start parsing a new set of WebVTT data without creating a
 whole new `node-vtt` object which is epensive since it has to start `PhantomJS`
 and establish a connection.
 
 ```js
-nodeVTT.clear(function() {
+nodeVTT.clear(function(error) {
+  if (error) {
+    console.log(error.message);
+  }
   // Ready to do some more parsing.
 });
 ```

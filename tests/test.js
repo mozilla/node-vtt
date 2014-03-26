@@ -34,7 +34,8 @@ describe("basic tests", function(){
   });
 
   it("flush", function(onDone) {
-    nodeVTT.flush(function() {
+    nodeVTT.flush(function(error) {
+      assert.ok(!error, "flush should succeed.");
       assert.equal(nodeVTT.cues.length, 2, "We should have two cues.");
       assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
       onDone();
@@ -50,7 +51,8 @@ describe("basic tests", function(){
   });
 
   it("clear", function(onDone) {
-    nodeVTT.clear(function() {
+    nodeVTT.clear(function(error) {
+      assert.ok(!error, "clear should succeed.");
       assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
       assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
       onDone();
@@ -67,7 +69,8 @@ describe("basic tests", function(){
   });
 
   it("second clear", function(onDone) {
-    nodeVTT.clear(function() {
+    nodeVTT.clear(function(error) {
+      assert.ok(!error, "clear should succeed.");
       assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
       assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
       onDone();
@@ -76,7 +79,7 @@ describe("basic tests", function(){
 
   it("processFile", function(onDone) {
     nodeVTT.processFile(vttFile, function(error, data) {
-      assert.ok(!error, "processParsedData should succeed.");
+      assert.ok(!error, "processFile should succeed.");
       assert.ok(data.length, 2, "Two elements should have been returned.");
       onDone();
     });
