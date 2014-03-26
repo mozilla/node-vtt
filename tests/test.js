@@ -85,4 +85,23 @@ describe("basic tests", function(){
     });
   });
 
+  it("setupParser", function(onDone) {
+    nodeVTT.setupParser("string", function(error) {
+      assert.ok(!error, "setupParser should succeed.");
+      assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
+      assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
+      onDone();
+    })
+  });
+
+  it("parse string data", function(onDone) {
+    var vtt = fs.readFileSync(vttFile, { encoding: "utf8" });
+    nodeVTT.parse(vtt, function(error) {
+      assert.ok(!error, "parsing string data should succeed.");
+      assert.equal(nodeVTT.cues.length, 1, "We should have one cue.");
+      assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
+      onDone();
+    });
+  });
+
 });
