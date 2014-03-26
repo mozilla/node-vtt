@@ -16,7 +16,7 @@ on [PhantomJS](http://phantomjs.org/) from Node.
   - [regions](#regions)
   - [vtt](#vtt)
   - [errors](#errors)
-  - [init(uri, onInit)](#inituri-oninit)
+  - [init(options, onInit)](#initoptions-oninit)
   - [shutdown()](#shutdown)
   - [parse(data, onParsed)](#parsedata-onparsed)
   - [parseFile(file, onParsed)](#parsefilefile-onparsed)
@@ -24,6 +24,7 @@ on [PhantomJS](http://phantomjs.org/) from Node.
   - [processParsedData(data, onProcessed)](#processparseddatadata-onprocessed)
   - [processFile(file, onProcessed)](#processfilefile-onprocessed)
   - [clear(onClear)](#clearonclear)
+  - [setupParser(encoding, onSetup)](#setupparserencoding-onsetup)
   - [error](#error)
 - [License](#license)
 
@@ -89,12 +90,12 @@ See the [default page](https://github.com/mozilla/node-vtt/blob/master/lib/basic
 provided for you for more information.
 
 Once you've created your own customized page check out how you can load it with the
-[init](#inituri-oninit) function.
+[init](#initoptions-oninit) function.
 
 ####ready####
 
 The `ready` property describes whether or not `node-vtt` is ready to parse or process
-WebVTT. To get `node-vtt` ready you must call [init](#init). It will become "un-ready"
+WebVTT. To get `node-vtt` ready you must call [init](#initoptions-oninit). It will become "un-ready"
 when you all [shutdown](#shutdown).
 
 ####cues####
@@ -138,19 +139,38 @@ that have been recieved while parsing some WebVTT file. Calling
 var errors = nodeVTT.errors;
 ```
 
-####init(uri, onInit)####
+####init(options, onInit)####
 
-Initializes the `node-vtt` object with a web page pointed to by `uri`. The page
-must have the WebVTT shim from `vtt.js` included on the page as well as the
-shims for VTTCue (extended) and VTTRegion (extended). If you don't want to 
-pass a `uri` a default page will be provided for you.
+Initializes the `node-vtt` object. It optionally takes an options object that
+can contain two config properties&mdash;`uri` and `encoding`. `uri` points at a custom
+page that you want `node-vtt` to load and run on. The page must have the WebVTT
+shim from `vtt.js` included on the page as well as the shims for VTTCue
+(extended) and VTTRegion (extended). If you don't want to  pass a `uri` a default
+page will be provided for you. The `encoding` property specifies the encoding of the
+data that you want to parse. `node-vtt` currently supports two types&mdash;`string` or `utf8`.
 
 If you'd like to make a custom page for `node-vtt` to work with then check out
 more information on that [here](#nodevtts-web-page).
 
+Using the default config of type `utf8` and the basic page provided for you.
+
 ```js
-nodeVTT.init(function() {
+nodeVTT.init(function(error) {
+  if (error) {
+    return console.log(error.message);
+  }
   // Run some node-vtt code.
+});
+```
+
+Or with an options object:
+
+```js
+nodeVTT.init({ uri: "my-web-page.html", encoding: "string" }, function(error) {
+  if (error) {
+    return console.log(error.message);
+  }
+  // Run some node-vtt code
 });
 ```
 
@@ -165,11 +185,13 @@ nodeVTT.shutdown();
 
 ####parse(data, onParsed)####
 
-Parses `data` as a chunk of WebVTT data. `data` must be a Node ArrayBuffer.
-This is the default type returned from a `readFile` call in Node. `onParsed`
-will return an [error](#error) object that has a `message` property. The parsed
-VTTCues and VTTRegions are aggregated on the `node-vtt` object itself and can be
-accessed via the [vtt](#vtt), [cues](#cues), or [regions](#regions) properties.
+Parses `data` as a chunk of WebVTT data. `data` can either be a UTF8 Node ArrayBuffer
+or a string. Make sure to call [init](#initoptions-oninit) or
+[setupParser](#setupparserencoding-onsetup) with the appropriate encoding specified
+before calling this function. `onParsed` will return an [error](#error) object that
+has a `message` property if an error occured. The parsed VTTCues and VTTRegions are
+aggregated on the `node-vtt` object itself and can be accessed via the [vtt](#vtt),
+[cues](#cues), or [regions](#regions) properties.
 
 ```js
 var fs = require("fs"),
@@ -301,6 +323,22 @@ nodeVTT.clear(function(error) {
 **Note:** Calling `clear` is only necessary if you want to parse a new set of
 WebVTT data. You do not need to call it if you're just calling the processing
 functions.
+
+####setupParser(encoding, onSetup)####
+
+Clears the current state of `node-vtt`, see [clear](#clearonclear), and sets up a
+new parser that is configured to parse the `encoding` specified. Only `string`
+and `utf8` are currently supported for encodings. If you don't pass `encoding`
+this function has the exact same behaviour as [clear](#clearonclear).
+
+```js
+nodeVTT.setupParser("string", function() {
+  var data = "WEBVTT\n00:00.000 --> 00:01.000\nI'm a Cue!";
+  nodeVTT.parse(data, function() {
+    console.log(nodeVTT.vtt);
+  });
+});
+```
 
 ####error####
 
