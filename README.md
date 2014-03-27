@@ -31,10 +31,17 @@ on [PhantomJS](http://phantomjs.org/) from Node.
 Install
 =======
 
-`node-vtt` is on npm. Just do:
+`node-vtt` is on npm. It uses `bower` to install some of its dependencies so
+if you don't have it first you will need to intall it:
 
+```bash
+$ npm install -g bower
 ```
-npm install node-vtt
+
+Then you can intall `node-vtt`:
+
+```bash
+$ npm install node-vtt
 ```
 
 Or include it in your `package.json` dependencies.
