@@ -1,7 +1,7 @@
 node-vtt
 ========
 
-[![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt)
+[![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt) [![Dependency Status](https://david-dm.org/mozilla/node-vtt.svg?branch=master)](https://david-dm.org/mozilla/node-vtt#info=devDependencies)
 
 A node wrapper for [vtt.js](https://github.com/mozilla/vtt.js). It runs `vtt.js`
 on [PhantomJS](http://phantomjs.org/) from Node.
@@ -356,4 +356,4 @@ nodeVTT.parseFile("wrong-file", function(error) {
 License
 =======
 
-Apached v2.0. See [LICENSE](https://github.com/mozilla/node-vtt/blob/master/LICENSE).
+Apache v2.0. See [LICENSE](https://github.com/mozilla/node-vtt/blob/master/LICENSE).
