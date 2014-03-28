@@ -1,7 +1,8 @@
 node-vtt
 ========
 
-[![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt) [![Dependency Status](https://david-dm.org/mozilla/node-vtt.svg?branch=master)](https://david-dm.org/mozilla/node-vtt#info=devDependencies)
+[![Build Status](https://travis-ci.org/mozilla/node-vtt.svg?branch=master)](https://travis-ci.org/mozilla/node-vtt) [![npm-version](http://img.shields.io/npm/v/node-vtt.svg)](https://www.npmjs.org/package/node-vtt) [![Dependency Status](https://david-dm.org//mozilla/node-vtt.svg?theme=shields.io)](https://david-dm.org//mozilla/node-vtt)
+[![devDependency Status](https://david-dm.org/mozilla/node-vtt/dev-status.svg?theme=shields.io)](https://david-dm.org/mozilla/node-vtt#info=devDependencies)
 
 A node wrapper for [vtt.js](https://github.com/mozilla/vtt.js). It runs `vtt.js`
 on [PhantomJS](http://phantomjs.org/) from Node.
