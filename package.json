@@ -1,7 +1,7 @@
 {
   "author": "Rick Eyre <rick.eyre@outlook.com>",
   "name": "node-vtt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A node wrapper for vtt.js",
   "main": "lib/node-vtt.js",
   "repository": {
