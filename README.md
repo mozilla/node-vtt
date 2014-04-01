@@ -32,14 +32,7 @@ on [PhantomJS](http://phantomjs.org/) from Node.
 Install
 =======
 
-`node-vtt` is on npm. It uses `bower` to install some of its dependencies so
-if you don't have it first you will need to intall it:
-
-```bash
-$ npm install -g bower
-```
-
-Then you can intall `node-vtt`:
+`node-vtt` is on npm. To install run:
 
 ```bash
 $ npm install node-vtt
