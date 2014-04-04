@@ -32,10 +32,17 @@ on [PhantomJS](http://phantomjs.org/) from Node.
 Install
 =======
 
-`node-vtt` is on npm. To install run:
+`node-vtt` is on `npm`. To install run:
 
 ```bash
 $ npm install node-vtt
+```
+
+You'll need to install `PhantomJS` if you haven't already. You can download
+it from its [website](http://phantomjs.org/download.html) or simply use npm:
+
+```bash
+$ npm install -g phantomjs
 ```
 
 Or include it in your `package.json` dependencies.
