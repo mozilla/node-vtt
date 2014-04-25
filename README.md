@@ -85,7 +85,9 @@ If you provide your own page the page must have a few things.
 * It must have the `WebVTT`, `VTTCue`, and `VTTRegion` shims provided by
 [vtt.js](https://github.com/mozilla/vtt.js). Doing this is most easily accomplished
 by using the `vtt.js` bower distributable and including it as a script on the
-page.
+page. However, if you want more granularity in what is included on the page from
+`vtt.js` you can also `npm install vtt.js` and have access to the individual
+source files through that.
 
 * The page must also have the `vttcue-extended` and `vttregion-extended` versions
 of the `VTTCue` and `VTTRegion` shims on the page.
