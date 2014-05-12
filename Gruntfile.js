@@ -34,13 +34,23 @@ module.exports = function( grunt ) {
         push: true,
         pushTo: "git@github.com:mozilla/node-vtt.git",
       }
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          reporter: "spec",
+        },
+        src: [ "tests/**/*.js" ]
+      }
     }
 
   });
 
   grunt.loadNpmTasks( "grunt-contrib-jshint" );
   grunt.loadNpmTasks( "grunt-bump" );
+  grunt.loadNpmTasks( "grunt-mocha-test" );
 
-  grunt.registerTask( "default", [ "jshint" ] );
+  grunt.registerTask( "default", [ "jshint", "mochaTest" ] );
 
 }

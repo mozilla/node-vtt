@@ -18,7 +18,8 @@
     "grunt-cli": "0.1.13",
     "grunt-contrib-jshint": "0.10.0",
     "grunt-bump": "0.0.13",
-    "text-encoding": "0.0.0"
+    "text-encoding": "0.0.0",
+    "grunt-mocha-test": "0.10.2"
   },
   "keywords": [
     "vtt",
@@ -42,6 +43,6 @@
   },
   "homepage": "https://github.com/mozilla/node-vtt",
   "scripts": {
-    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha --reporter spec --timeout 40000 tests"
+    "test": "./node_modules/.bin/grunt"
   }
 }
