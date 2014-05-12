@@ -43,8 +43,9 @@ describe("basic tests", function(){
     var vtt = fs.readFileSync(vttFile);
     nodeVTT.parse(vtt, function(error) {
       assert.ok(!error, "parse should succeed.");
-      assert.equal(nodeVTT.cues.length, 1, "We should have one cue.");
+      assert.equal(nodeVTT.cues.length, 2, "We should have one cue.");
       assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
+      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
       onDone();
     });
   });
@@ -54,6 +55,7 @@ describe("basic tests", function(){
       assert.ok(!error, "flush should succeed.");
       assert.equal(nodeVTT.cues.length, 2, "We should have two cues.");
       assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
+      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
       onDone();
     });
   })
@@ -71,6 +73,7 @@ describe("basic tests", function(){
       assert.ok(!error, "clear should succeed.");
       assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
       assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
+      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
       onDone();
     });
   });
@@ -80,6 +83,7 @@ describe("basic tests", function(){
       assert.ok(!error, "parseFile should succeed.");
       assert.equal(nodeVTT.cues.length, 2, "We should have two cues.");
       assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
+      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
       onDone();
     });
   });
@@ -89,6 +93,7 @@ describe("basic tests", function(){
       assert.ok(!error, "clear should succeed.");
       assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
       assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
+      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
       onDone();
     });
   });
@@ -106,6 +111,7 @@ describe("basic tests", function(){
       assert.ok(!error, "setupParser should succeed.");
       assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
       assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
+      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
       onDone();
     })
   });
@@ -114,8 +120,9 @@ describe("basic tests", function(){
     var vtt = fs.readFileSync(vttFile, { encoding: "utf8" });
     nodeVTT.parse(vtt, function(error) {
       assert.ok(!error, "parsing string data should succeed.");
-      assert.equal(nodeVTT.cues.length, 1, "We should have one cue.");
+      assert.equal(nodeVTT.cues.length, 2, "We should have one cue.");
       assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
+      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
       onDone();
     });
   });
