@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var assert = Object.create(require("assert")),
+var expect = require("chai").expect,
     path = require("path"),
     fs = require("fs"),
     vttFile = path.join(__dirname, "/basic.vtt"),
@@ -35,83 +35,83 @@ describe("basic tests", function(){
     ( "cues regions errors ready vtt phantom " +
       "flush clear parse parseFile processFile " + 
       "processParsedData" ).split(" ").forEach(function(key) {
-        assert.ok(key in nodeVTT, "NodeVTT should have the " + key + " property.");
+        expect(nodeVTT).to.have.property(key);
       });
   });
 
   it("parse", function(onDone) {
     var vtt = fs.readFileSync(vttFile);
     nodeVTT.parse(vtt, function(error) {
-      assert.ok(!error, "parse should succeed.");
-      assert.equal(nodeVTT.cues.length, 2, "We should have one cue.");
-      assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
-      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(2);
+      expect(nodeVTT.regions).to.have.length(1);
+      expect(nodeVTT.errors).to.have.length(1);
       onDone();
     });
   });
 
   it("flush", function(onDone) {
     nodeVTT.flush(function(error) {
-      assert.ok(!error, "flush should succeed.");
-      assert.equal(nodeVTT.cues.length, 2, "We should have two cues.");
-      assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
-      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(2);
+      expect(nodeVTT.regions).to.have.length(1);
+      expect(nodeVTT.errors).to.have.length(1);
       onDone();
     });
   })
 
   it("processParsedData", function(onDone) {
     nodeVTT.processParsedData(function(error, data) {
-      assert.ok(!error, "processParsedData should succeed.");
-      assert.ok(data.length, 2, "Two elements should have been returned.");
+      expect(error).to.not.exist;
+      expect(data).to.have.length(2);
       onDone();
     });
   });
 
   it("clear", function(onDone) {
     nodeVTT.clear(function(error) {
-      assert.ok(!error, "clear should succeed.");
-      assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
-      assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
-      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(0);
+      expect(nodeVTT.regions).to.have.length(0);
+      expect(nodeVTT.errors).to.have.length(0);
       onDone();
     });
   });
 
   it("parseFile", function(onDone) {
     nodeVTT.parseFile(vttFile, function(error) {
-      assert.ok(!error, "parseFile should succeed.");
-      assert.equal(nodeVTT.cues.length, 2, "We should have two cues.");
-      assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
-      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(2);
+      expect(nodeVTT.regions).to.have.length(1);
+      expect(nodeVTT.errors).to.have.length(1);
       onDone();
     });
   });
 
   it("second clear", function(onDone) {
     nodeVTT.clear(function(error) {
-      assert.ok(!error, "clear should succeed.");
-      assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
-      assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
-      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(0);
+      expect(nodeVTT.regions).to.have.length(0);
+      expect(nodeVTT.errors).to.have.length(0);
       onDone();
     });
   });
 
   it("processFile", function(onDone) {
     nodeVTT.processFile(vttFile, function(error, data) {
-      assert.ok(!error, "processFile should succeed.");
-      assert.ok(data.length, 2, "Two elements should have been returned.");
+      expect(error).to.not.exist;
+      expect(data).to.have.length(2);
       onDone();
     });
   });
 
   it("setupParser", function(onDone) {
     nodeVTT.setupParser("string", function(error) {
-      assert.ok(!error, "setupParser should succeed.");
-      assert.equal(nodeVTT.cues.length, 0, "We should have zero cues.");
-      assert.equal(nodeVTT.regions.length, 0, "We should have zero regions.");
-      assert.equal(nodeVTT.errors.length, 0, "We should have zero errors.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(0);
+      expect(nodeVTT.regions).to.have.length(0);
+      expect(nodeVTT.errors).to.have.length(0);
       onDone();
     })
   });
@@ -119,10 +119,10 @@ describe("basic tests", function(){
   it("parse string data", function(onDone) {
     var vtt = fs.readFileSync(vttFile, { encoding: "utf8" });
     nodeVTT.parse(vtt, function(error) {
-      assert.ok(!error, "parsing string data should succeed.");
-      assert.equal(nodeVTT.cues.length, 2, "We should have one cue.");
-      assert.equal(nodeVTT.regions.length, 1, "We should have one region.");
-      assert.equal(nodeVTT.errors.length, 1, "We should have one error.");
+      expect(error).to.not.exist;
+      expect(nodeVTT.cues).to.have.length(2);
+      expect(nodeVTT.regions).to.have.length(1);
+      expect(nodeVTT.errors).to.have.length(1);
       onDone();
     });
   });
