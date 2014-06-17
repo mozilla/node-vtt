@@ -11,7 +11,8 @@
   "dependencies": {
     "vtt.js": "0.11.7",
     "node-phantom": "0.2.5",
-    "mocha": "<=1.18.2"
+    "mocha": "<=1.18.2",
+    "socket.io": "0.9.x"
   },
   "devDependencies": {
     "grunt": "0.4.4",
@@ -20,8 +21,7 @@
     "grunt-bump": "0.0.13",
     "text-encoding": "0.0.0",
     "grunt-mocha-test": "0.10.2",
-    "chai": "1.9.1",
-    "socket.io": "0.9.x"
+    "chai": "1.9.1"
   },
   "keywords": [
     "vtt",
