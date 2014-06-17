@@ -20,7 +20,8 @@
     "grunt-bump": "0.0.13",
     "text-encoding": "0.0.0",
     "grunt-mocha-test": "0.10.2",
-    "chai": "1.9.1"
+    "chai": "1.9.1",
+    "socket.io": "0.9.x"
   },
   "keywords": [
     "vtt",
