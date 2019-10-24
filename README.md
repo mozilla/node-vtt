@@ -142,7 +142,7 @@ var vtt = nodeVTT.vtt,
 
 The `errors` property contains an array of the aggregated
 [ParsingErrors](https://github.com/mozilla/vtt.js#parsingerror) from `vtt.js`
-that have been recieved while parsing some WebVTT file. Calling
+that have been received while parsing some WebVTT file. Calling
 [clear](#clearonclear) will empty the `errors` array.
 
 ```js
@@ -199,7 +199,7 @@ Parses `data` as a chunk of WebVTT data. `data` can either be a UTF8 Node ArrayB
 or a string. Make sure to call [init](#initoptions-oninit) or
 [setupParser](#setupparserencoding-onsetup) with the appropriate encoding specified
 before calling this function. `onParsed` will return an [error](#error) object that
-has a `message` property if an error occured. The parsed VTTCues and VTTRegions are
+has a `message` property if an error occurred. The parsed VTTCues and VTTRegions are
 aggregated on the `node-vtt` object itself and can be accessed via the [vtt](#vtt),
 [cues](#cues), or [regions](#regions) properties.
 
