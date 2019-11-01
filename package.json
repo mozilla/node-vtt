@@ -11,7 +11,7 @@
   "dependencies": {
     "vtt.js": "0.11.7",
     "node-phantom": "0.2.5",
-    "socket.io": "0.9.6"
+    "socket.io": "2.3.0"
   },
   "devDependencies": {
     "grunt": "0.4.4",
