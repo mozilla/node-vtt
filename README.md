@@ -7,7 +7,7 @@ node-vtt
 A node wrapper for [vtt.js](https://github.com/mozilla/vtt.js). It runs `vtt.js`
 on [PhantomJS](http://phantomjs.org/) from Node.
 
-###Table of Contents###
+### Table of Contents
 
 - [Install](#install)
 - [API](#api)
@@ -73,7 +73,7 @@ nodeVTT.init(function() {
 });
 ```
 
-####NodeVTT's Web Page####
+#### NodeVTT's Web Page
 
 `node-vtt` uses [PhantomJS](http://phantomjs.org/) to run `vtt.js` on a web
 page. Therefore, you need to have a simple HTML file for `node-vtt` to load. There
@@ -102,13 +102,13 @@ provided for you for more information.
 Once you've created your own customized page check out how you can load it with the
 [init](#initoptions-oninit) function.
 
-####ready####
+#### ready
 
 The `ready` property describes whether or not `node-vtt` is ready to parse or process
 WebVTT. To get `node-vtt` ready you must call [init](#initoptions-oninit). It will become "un-ready"
 when you all [shutdown](#shutdown).
 
-####cues####
+#### cues
 
 The `cues` property contains an array of the aggregated `VTTCues` that have been
 parsed from a WebVTT file. Calling [clear](#clearonclear) will empty the `cues` array.
@@ -117,7 +117,7 @@ parsed from a WebVTT file. Calling [clear](#clearonclear) will empty the `cues` 
 var cues = nodeVTT.cues;
 ```
 
-####regions####
+#### regions
 
 The `regions` property contains an array of the aggregated `VTTRegions` that have been
 parsed from a WebVTT file. Calling [clear](#clearonclear) will empty the `regions` array.
@@ -126,7 +126,7 @@ parsed from a WebVTT file. Calling [clear](#clearonclear) will empty the `region
 var regions = nodeVTT.regions;
 ```
 
-####vtt####
+#### vtt
 
 The `vtt` property contains an object that is the `cues` and `regions` properties.
 This provides an easy way to get all the `VTTCues` and `VTTRegions` data parsed
@@ -138,7 +138,7 @@ var vtt = nodeVTT.vtt,
     regions = vtt.regions;
 ```
 
-####errors####
+#### errors
 
 The `errors` property contains an array of the aggregated
 [ParsingErrors](https://github.com/mozilla/vtt.js#parsingerror) from `vtt.js`
@@ -149,7 +149,7 @@ that have been received while parsing some WebVTT file. Calling
 var errors = nodeVTT.errors;
 ```
 
-####init(options, onInit)####
+#### init(options, onInit)
 
 Initializes the `node-vtt` object. It optionally takes an options object that
 can contain two config properties&mdash;`uri` and `encoding`. `uri` points at a custom
@@ -184,7 +184,7 @@ nodeVTT.init({ uri: "my-web-page.html", encoding: "string" }, function(error) {
 });
 ```
 
-####shutdown()####
+#### shutdown()
 
 Shuts `node-vtt` down. This is necessary as `node-vtt` will keep a `PhantomJS`
 instance alive until this method is called.
@@ -193,7 +193,7 @@ instance alive until this method is called.
 nodeVTT.shutdown();
 ```
 
-####parse(data, onParsed)####
+#### parse(data, onParsed)
 
 Parses `data` as a chunk of WebVTT data. `data` can either be a UTF8 Node ArrayBuffer
 or a string. Make sure to call [init](#initoptions-oninit) or
@@ -215,7 +215,7 @@ nodeVTT.parse(data, function(error) {
 });
 ```
 
-####parseFile(file, onParsed)####
+#### parseFile(file, onParsed)
 
 A version of [parse(data, onParsed)](#parsedata-onparsed) that will read the
 WebVTT from a file for you and call [flush](#flushonflush) where needed.
@@ -229,7 +229,7 @@ nodeVTT.parseFile("vtt-file", function(error) {
 });
 ```
 
-####flush(onFlush)####
+#### flush(onFlush)
 
 Flushes the parser. This indicates that no more data will be coming to the parser
 and so it should parse any unparsed data it may have. This is necessary when parsing
@@ -250,7 +250,7 @@ nodeVTT.parse(data, function(){
 });
 ```
 
-####processParsedData(data, onProcessed)####
+#### processParsedData(data, onProcessed)
 
 Runs the [processing level](http://dev.w3.org/html5/webvtt/#processing-model)
 steps of the WebVTT specification over the cues contained in `data`. `data` should
@@ -296,7 +296,7 @@ nodeVTT.parseFile("vtt-file", function() {
 });
 ```
 
-####processFile(file, onProcessed)####
+#### processFile(file, onProcessed)
 
 A version of [processParsedData](#processparseddatadata-onprocessed) except that
 it will read and parse the WebVTT data contained within the file and process it for
@@ -311,7 +311,7 @@ nodeVTT.processFile("vtt-file", function(error, divs) {
 });
 ```
 
-####clear(onClear)####
+#### clear(onClear)
 
 Clears the state of `node-vtt`. This will create a fresh parser and empty the
 [vtt](#vtt), [cues](#cues), [regions](#regions), and [errors](#errors) arrays.
@@ -334,7 +334,7 @@ nodeVTT.clear(function(error) {
 WebVTT data. You do not need to call it if you're just calling the processing
 functions.
 
-####setupParser(encoding, onSetup)####
+#### setupParser(encoding, onSetup)
 
 Clears the current state of `node-vtt`, see [clear](#clearonclear), and sets up a
 new parser that is configured to parse the `encoding` specified. Only `string`
@@ -350,7 +350,7 @@ nodeVTT.setupParser("string", function() {
 });
 ```
 
-####error####
+#### error
 
 The error objects returned by `node-vtt` are simple JS objects with a `message` property
 on them describing the error.
